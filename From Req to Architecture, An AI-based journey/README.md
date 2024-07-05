@@ -25,6 +25,7 @@ Step 1: Generating domain model from textual requirements
 7.	Please list all relations of these domain concepts to each other. List one relation per line, output the concepts in PascalCase, like "DomainConceptA", and separate the related concepts in each line with "--". Do not explain the relations.
 8.	Make the list exhaustive.
 9.	Draw a plantuml diagram with the concepts and relations. Keep it simple and do not include any attributes or methods.
+
 Step 3: Generating multiple architectural candidates from the domain model.
 1.	Suggest an architectural style that can be used to implement this domain model extracted above.
 2.	Can you propose a PlantUML component diagram for the suggested architectural style.
