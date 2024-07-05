@@ -14,6 +14,7 @@ The Initial study done by the paper extracts domain model of a system given its 
 We used the the similar prompts as in the study to extract the domain models for our examples. We have also extended the study to extract multiple architectures from the extracted domain model(step 3 of the process above). The conversations with chatgpt and generated architectures for these can be found in the folders examaple 1-5.
 
 The prompts uses are summarized here: 
+
 Step 1: Generating domain model from textual requirements 
 1.	I will give you some requirements. Please read them and answer with "ok".
 2.	The requirements pasted inside the quotation marks “”.
