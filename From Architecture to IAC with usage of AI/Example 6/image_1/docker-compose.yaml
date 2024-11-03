@@ -1,0 +1,48 @@
+version: '3.8'
+services:
+  # Big Services
+  data_storage_service:
+    image: data-storage-service:latest
+    container_name: data_storage_service
+    volumes:
+      - data_storage:/var/lib/data_storage
+    networks:
+      - backend
+
+  dashboard_service:
+    image: dashboard-service:latest
+    container_name: dashboard_service
+    networks:
+      - backend
+
+  # Microservices (Grouped)
+  monitoring_service:
+    image: monitoring-service:latest
+    container_name: monitoring_service
+    networks:
+      - backend
+
+  notification_service:
+    image: notification-service:latest
+    container_name: notification_service
+    networks:
+      - backend
+
+  integration_service:
+    image: integration-service:latest
+    container_name: integration_service
+    networks:
+      - backend
+
+  authentication_service:
+    image: authentication-service:latest
+    container_name: authentication_service
+    networks:
+      - backend
+
+volumes:
+  data_storage:
+
+networks:
+  backend:
+    driver: bridge

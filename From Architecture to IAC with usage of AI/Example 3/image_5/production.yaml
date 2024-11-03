@@ -1,0 +1,131 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: integration-microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: integration-microservice
+  template:
+    metadata:
+      labels:
+        app: integration-microservice
+    spec:
+      containers:
+      - name: integration-microservice
+        image: your-integration-microservice-image
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: environmental-sensors-microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: environmental-sensors-microservice
+  template:
+    metadata:
+      labels:
+        app: environmental-sensors-microservice
+    spec:
+      containers:
+      - name: environmental-sensors-microservice
+        image: your-environmental-sensors-microservice-image
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: real-time-monitoring-microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: real-time-monitoring-microservice
+  template:
+    metadata:
+      labels:
+        app: real-time-monitoring-microservice
+    spec:
+      containers:
+      - name: real-time-monitoring-microservice
+        image: your-real-time-monitoring-microservice-image
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alerting-microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alerting-microservice
+  template:
+    metadata:
+      labels:
+        app: alerting-microservice
+    spec:
+      containers:
+      - name: alerting-microservice
+        image: your-alerting-microservice-image
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-storage-microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-storage-microservice
+  template:
+    metadata:
+      labels:
+        app: data-storage-microservice
+    spec:
+      containers:
+      - name: data-storage-microservice
+        image: your-data-storage-microservice-image
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: remote-access-microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: remote-access-microservice
+  template:
+    metadata:
+      labels:
+        app: remote-access-microservice
+    spec:
+      containers:
+      - name: remote-access-microservice
+        image: your-remote-access-microservice-image
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scalability-microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scalability-microservice
+  template:
+    metadata:
+      labels:
+        app: scalability-microservice
+    spec:
+      containers:
+      - name: scalability-microservice
+        image: your-scalability-microservice-image

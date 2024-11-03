@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: notification-service
+spec:
+  containers:
+    - name: notification-service
+      image: notification-service:latest

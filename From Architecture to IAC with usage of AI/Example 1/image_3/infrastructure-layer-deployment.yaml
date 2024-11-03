@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: infrastructure-services
+  namespace: financial-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: infrastructure-services
+  template:
+    metadata:
+      labels:
+        app: infrastructure-services
+    spec:
+      containers:
+      - name: database
+        image: your-registry/database:latest
+        ports:
+        - containerPort: 3306
+      - name: security-controls
+        image: your-registry/security-controls:latest
+        ports:
+        - containerPort: 8083
+      - name: compliance
+        image: your-registry/compliance:latest
+        ports:
+        - containerPort: 8084
+      - name: system-redundancy
+        image: your-registry/system-redundancy:latest
+        ports:
+        - containerPort: 8085

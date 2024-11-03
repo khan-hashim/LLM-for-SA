@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-producer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: event-producer
+  template:
+    metadata:
+      labels:
+        app: event-producer
+    spec:
+      containers:
+      - name: event-producer
+        image: your-event-producer-image
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-bus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: event-bus
+  template:
+    metadata:
+      labels:
+        app: event-bus
+    spec:
+      containers:
+      - name: event-bus
+        image: your-event-bus-image
+
+---
+# Microservices Pod
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservices-group
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: microservices-group
+  template:
+    metadata:
+      labels:
+        app: microservices-group
+    spec:
+      containers:
+      - name: environmental-sensors
+        image: your-sensors-image
+      - name: integration-building-systems
+        image: your-integration-image
+      - name: alerting-notification
+        image: your-alerting-image
+      - name: remote-access-control
+        image: your-remote-access-image
+      - name: scalability-management
+        image: your-scalability-image
+      - name: real-time-monitoring
+        image: your-monitoring-image
+      - name: data-logging-storage
+        image: your-data-storage-image

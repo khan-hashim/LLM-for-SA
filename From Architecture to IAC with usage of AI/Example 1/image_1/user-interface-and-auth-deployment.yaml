@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-interface-auth
+  namespace: financial-system
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: user-interface-auth
+  template:
+    metadata:
+      labels:
+        app: user-interface-auth
+    spec:
+      containers:
+      - name: user-interface
+        image: your-registry/user-interface:latest
+        ports:
+        - containerPort: 8081
+      - name: authentication
+        image: your-registry/authentication:latest
+        ports:
+        - containerPort: 8082

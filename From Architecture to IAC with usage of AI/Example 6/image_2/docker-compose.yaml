@@ -1,0 +1,70 @@
+version: '3.8'
+services:
+  # Event Bus (Message Broker)
+  event_bus:
+    image: rabbitmq:3-management
+    container_name: event_bus
+    ports:
+      - "5672:5672"  # RabbitMQ port
+      - "15672:15672"  # Management UI
+    networks:
+      - backend
+
+  # Producers
+  monitoring_service:
+    image: monitoring-service:latest
+    container_name: monitoring_service
+    environment:
+      - EVENT_BUS_URL=event_bus:5672
+    networks:
+      - backend
+    depends_on:
+      - event_bus
+
+  integration_service:
+    image: integration-service:latest
+    container_name: integration_service
+    environment:
+      - EVENT_BUS_URL=event_bus:5672
+    networks:
+      - backend
+    depends_on:
+      - event_bus
+
+  # Consumers
+  data_storage_service:
+    image: data-storage-service:latest
+    container_name: data_storage_service
+    environment:
+      - EVENT_BUS_URL=event_bus:5672
+    networks:
+      - backend
+    depends_on:
+      - event_bus
+
+  notification_service:
+    image: notification-service:latest
+    container_name: notification_service
+    environment:
+      - EVENT_BUS_URL=event_bus:5672
+    networks:
+      - backend
+    depends_on:
+      - event_bus
+
+  dashboard_service:
+    image: dashboard-service:latest
+    container_name: dashboard_service
+    environment:
+      - EVENT_BUS_URL=event_bus:5672
+    networks:
+      - backend
+    depends_on:
+      - event_bus
+
+volumes:
+  data_storage:
+
+networks:
+  backend:
+    driver: bridge

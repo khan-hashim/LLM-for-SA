@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: infrastructure-services
+spec:
+  containers:
+    - name: availability-service
+      image: availability-service:latest
+    - name: scalability-service
+      image: scalability-service:latest

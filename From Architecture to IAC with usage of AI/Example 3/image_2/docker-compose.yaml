@@ -1,0 +1,49 @@
+version: '3.8'
+services:
+  # Big Services
+  es-service:
+    image: your-es-service-image
+    container_name: es_service
+    networks:
+      - monitoring-network
+
+  rac-service:
+    image: your-rac-service-image
+    container_name: rac_service
+    networks:
+      - monitoring-network
+
+  # Microservices Grouped in Shared Containers
+  ibs-service:
+    image: your-ibs-service-image
+    container_name: ibs_service
+    networks:
+      - monitoring-network
+
+  rtm-service:
+    image: your-rtm-service-image
+    container_name: rtm_service
+    networks:
+      - monitoring-network
+
+  dls-service:
+    image: your-dls-service-image
+    container_name: dls_service
+    networks:
+      - monitoring-network
+
+  an-service:
+    image: your-an-service-image
+    container_name: an_service
+    networks:
+      - monitoring-network
+
+  smbm-service:
+    image: your-smbm-service-image
+    container_name: smbm_service
+    networks:
+      - monitoring-network
+
+networks:
+  monitoring-network:
+    driver: bridge

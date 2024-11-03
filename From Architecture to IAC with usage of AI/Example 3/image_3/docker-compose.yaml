@@ -1,0 +1,55 @@
+version: '3.8'
+services:
+  # Core System
+  core-system:
+    image: your-core-system-image
+    container_name: core_system
+    networks:
+      - monitoring-network
+
+  # Plugins Grouped in Shared Containers
+  environmental-sensors-plugin:
+    image: your-environmental-sensors-plugin-image
+    container_name: environmental_sensors_plugin
+    networks:
+      - monitoring-network
+
+  real-time-monitoring-plugin:
+    image: your-real-time-monitoring-plugin-image
+    container_name: real_time_monitoring_plugin
+    networks:
+      - monitoring-network
+
+  integration-plugin:
+    image: your-integration-plugin-image
+    container_name: integration_plugin
+    networks:
+      - monitoring-network
+
+  data-storage-plugin:
+    image: your-data-storage-plugin-image
+    container_name: data_storage_plugin
+    networks:
+      - monitoring-network
+
+  alerting-plugin:
+    image: your-alerting-plugin-image
+    container_name: alerting_plugin
+    networks:
+      - monitoring-network
+
+  remote-access-plugin:
+    image: your-remote-access-plugin-image
+    container_name: remote_access_plugin
+    networks:
+      - monitoring-network
+
+  scalability-plugin:
+    image: your-scalability-plugin-image
+    container_name: scalability_plugin
+    networks:
+      - monitoring-network
+
+networks:
+  monitoring-network:
+    driver: bridge

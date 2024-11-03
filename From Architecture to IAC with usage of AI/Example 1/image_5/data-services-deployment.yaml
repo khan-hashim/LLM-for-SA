@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-services
+  namespace: financial-system
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: data-services
+  template:
+    metadata:
+      labels:
+        app: data-services
+    spec:
+      containers:
+      - name: data-privacy
+        image: your-registry/data-privacy:latest
+        ports:
+        - containerPort: 8089
+      - name: data-integrity
+        image: your-registry/data-integrity:latest
+        ports:
+        - containerPort: 8090

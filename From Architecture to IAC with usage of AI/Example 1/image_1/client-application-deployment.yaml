@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-application
+  namespace: financial-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client-application
+  template:
+    metadata:
+      labels:
+        app: client-application
+    spec:
+      containers:
+      - name: client-application-container
+        image: your-registry/client-application:latest
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080

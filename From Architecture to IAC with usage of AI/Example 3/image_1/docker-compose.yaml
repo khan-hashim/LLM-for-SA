@@ -1,0 +1,61 @@
+version: '3.8'
+services:
+  # Big Services
+  event-producer:
+    image: your-event-producer-image
+    container_name: event_producer
+    networks:
+      - monitoring-network
+
+  event-bus:
+    image: your-event-bus-image
+    container_name: event_bus
+    networks:
+      - monitoring-network
+
+  # Microservices Grouped in Shared Containers
+  environmental-sensors:
+    image: your-sensors-image
+    container_name: environmental_sensors
+    networks:
+      - monitoring-network
+
+  integration-with-building-systems:
+    image: your-integration-image
+    container_name: integration_building_systems
+    networks:
+      - monitoring-network
+
+  alerting-and-notification:
+    image: your-alerting-image
+    container_name: alerting_notification
+    networks:
+      - monitoring-network
+
+  remote-access-control:
+    image: your-remote-access-image
+    container_name: remote_access_control
+    networks:
+      - monitoring-network
+
+  scalability-management:
+    image: your-scalability-image
+    container_name: scalability_management
+    networks:
+      - monitoring-network
+
+  real-time-monitoring:
+    image: your-monitoring-image
+    container_name: real_time_monitoring
+    networks:
+      - monitoring-network
+
+  data-logging-storage:
+    image: your-data-storage-image
+    container_name: data_logging_storage
+    networks:
+      - monitoring-network
+
+networks:
+  monitoring-network:
+    driver: bridge

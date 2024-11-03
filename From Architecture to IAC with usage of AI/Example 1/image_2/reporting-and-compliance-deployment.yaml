@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reporting-compliance
+  namespace: financial-system
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: reporting-compliance
+  template:
+    metadata:
+      labels:
+        app: reporting-compliance
+    spec:
+      containers:
+      - name: reporting-analytics
+        image: your-registry/reporting-analytics:latest
+        ports:
+        - containerPort: 8090
+      - name: compliance
+        image: your-registry/compliance:latest
+        ports:
+        - containerPort: 8091

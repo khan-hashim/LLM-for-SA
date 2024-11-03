@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-interface
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-interface
+  template:
+    metadata:
+      labels:
+        app: user-interface
+    spec:
+      containers:
+      - name: user-interface
+        image: your-user-interface-image
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-storage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-storage
+  template:
+    metadata:
+      labels:
+        app: data-storage
+    spec:
+      containers:
+      - name: data-storage
+        image: your-data-storage-image
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scalability-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scalability-manager
+  template:
+    metadata:
+      labels:
+        app: scalability-manager
+    spec:
+      containers:
+      - name: scalability-manager
+        image: your-scalability-manager-image
+
+---
+# Application Layer Services Pod
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: application-services-group
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: application-services-group
+  template:
+    metadata:
+      labels:
+        app: application-services-group
+    spec:
+      containers:
+      - name: environmental-sensors-service
+        image: your-environmental-sensors-service-image
+      - name: real-time-monitoring-service
+        image: your-real-time-monitoring-service-image
+      - name: alerting-service
+        image: your-alerting-service-image
+      - name: integration-service
+        image: your-integration-service-image
+      - name: remote-access-service
+        image: your-remote-access-service-image

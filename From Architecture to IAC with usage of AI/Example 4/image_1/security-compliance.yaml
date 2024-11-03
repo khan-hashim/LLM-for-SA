@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: security-compliance-services
+spec:
+  containers:
+    - name: security-service
+      image: security-service:latest
+    - name: compliance-service
+      image: compliance-service:latest
+    - name: data-integrity-service
+      image: data-integrity-service:latest
+    - name: backup-recovery-service
+      image: backup-recovery-service:latest
+    - name: audit-log-service
+      image: audit-log-service:latest

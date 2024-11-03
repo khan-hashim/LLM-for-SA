@@ -1,0 +1,20 @@
+# docker-compose.yaml
+version: '3.8'
+services:
+  database:
+    image: postgres:latest
+    container_name: database
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: smart_assistance_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - smart-assistance-net
+
+volumes:
+  db_data:
+
+networks:
+  smart-assistance-net:

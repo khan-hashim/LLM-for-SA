@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-storage-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-storage-service
+  template:
+    metadata:
+      labels:
+        app: data-storage-service
+    spec:
+      containers:
+      - name: data-storage-service
+        image: data-storage-service:latest
+        env:
+        - name: EVENT_BUS_URL
+          value: "event-bus:5672"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notification-service
+  template:
+    metadata:
+      labels:
+        app: notification-service
+    spec:
+      containers:
+      - name: notification-service
+        image: notification-service:latest
+        env:
+        - name: EVENT_BUS_URL
+          value: "event-bus:5672"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dashboard-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dashboard-service
+  template:
+    metadata:
+      labels:
+        app: dashboard-service
+    spec:
+      containers:
+      - name: dashboard-service
+        image: dashboard-service:latest
+        env:
+        - name: EVENT_BUS_URL
+          value: "event-bus:5672"

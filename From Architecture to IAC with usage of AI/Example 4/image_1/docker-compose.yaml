@@ -1,0 +1,98 @@
+version: '3.8'
+
+services:
+  # Client Services
+  client-service:
+    image: client-service:latest
+    networks:
+      - backend
+
+  client-preferences-service:
+    image: client-preferences-service:latest
+    networks:
+      - backend
+
+  account-settings-service:
+    image: account-settings-service:latest
+    networks:
+      - backend
+
+  # Investment Services (Big Service)
+  investment-service:
+    image: investment-service:latest
+    networks:
+      - backend
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+
+  investment-data-service:
+    image: investment-data-service:latest
+    networks:
+      - backend
+
+  transaction-service:
+    image: transaction-service:latest
+    networks:
+      - backend
+
+  # Notification Service (Big Service)
+  notification-service:
+    image: notification-service:latest
+    networks:
+      - backend
+
+  # Report Service
+  report-service:
+    image: report-service:latest
+    networks:
+      - backend
+
+  # External Services
+  financial-institution-service:
+    image: financial-institution-service:latest
+    networks:
+      - backend
+
+  # Security and Compliance Services (Big Service Group)
+  security-service:
+    image: security-service:latest
+    networks:
+      - backend
+
+  compliance-service:
+    image: compliance-service:latest
+    networks:
+      - backend
+
+  data-integrity-service:
+    image: data-integrity-service:latest
+    networks:
+      - backend
+
+  backup-recovery-service:
+    image: backup-recovery-service:latest
+    networks:
+      - backend
+
+  audit-log-service:
+    image: audit-log-service:latest
+    networks:
+      - backend
+
+  # Infrastructure Services
+  availability-service:
+    image: availability-service:latest
+    networks:
+      - backend
+
+  scalability-service:
+    image: scalability-service:latest
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge

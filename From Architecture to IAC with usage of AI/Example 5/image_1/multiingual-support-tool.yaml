@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: support-services
+  labels:
+    app: support
+spec:
+  containers:
+    - name: multilingual-support-service
+      image: myimage/multilingual-support:latest
+      ports:
+        - containerPort: 8301
+    - name: tool-integration-service
+      image: myimage/tool-integration:latest
+      ports:
+        - containerPort: 8302

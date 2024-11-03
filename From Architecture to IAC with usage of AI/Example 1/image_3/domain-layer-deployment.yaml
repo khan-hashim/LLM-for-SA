@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: domain-services
+  namespace: financial-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: domain-services
+  template:
+    metadata:
+      labels:
+        app: domain-services
+    spec:
+      containers:
+      - name: investment-product
+        image: your-registry/investment-product:latest
+        ports:
+        - containerPort: 8091
+      - name: portfolio
+        image: your-registry/portfolio:latest
+        ports:
+        - containerPort: 8092
+      - name: client-account
+        image: your-registry/client-account:latest
+        ports:
+        - containerPort: 8093
+      - name: transaction
+        image: your-registry/transaction:latest
+        ports:
+        - containerPort: 8094
+      - name: performance-metrics
+        image: your-registry/performance-metrics:latest
+        ports:
+        - containerPort: 8095

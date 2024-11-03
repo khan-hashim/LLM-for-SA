@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: es-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: es-service
+  template:
+    metadata:
+      labels:
+        app: es-service
+    spec:
+      containers:
+      - name: es-service
+        image: your-es-service-image
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rac-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rac-service
+  template:
+    metadata:
+      labels:
+        app: rac-service
+    spec:
+      containers:
+      - name: rac-service
+        image: your-rac-service-image
+
+---
+# Microservices Pod
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservices-group
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: microservices-group
+  template:
+    metadata:
+      labels:
+        app: microservices-group
+    spec:
+      containers:
+      - name: ibs-service
+        image: your-ibs-service-image
+      - name: rtm-service
+        image: your-rtm-service-image
+      - name: dls-service
+        image: your-dls-service-image
+      - name: an-service
+        image: your-an-service-image
+      - name: smbm-service
+        image: your-smbm-service-image

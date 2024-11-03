@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: core-system
+  template:
+    metadata:
+      labels:
+        app: core-system
+    spec:
+      containers:
+      - name: core-system
+        image: your-core-system-image
+
+---
+# Plugins Pod
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plugins-group
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: plugins-group
+  template:
+    metadata:
+      labels:
+        app: plugins-group
+    spec:
+      containers:
+      - name: environmental-sensors-plugin
+        image: your-environmental-sensors-plugin-image
+      - name: real-time-monitoring-plugin
+        image: your-real-time-monitoring-plugin-image
+      - name: integration-plugin
+        image: your-integration-plugin-image
+      - name: data-storage-plugin
+        image: your-data-storage-plugin-image
+      - name: alerting-plugin
+        image: your-alerting-plugin-image
+      - name: remote-access-plugin
+        image: your-remote-access-plugin-image
+      - name: scalability-plugin
+        image: your-scalability-plugin-image

@@ -1,0 +1,48 @@
+# layers.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smart-assistance-layers
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smart-assistance
+  template:
+    metadata:
+      labels:
+        app: smart-assistance
+    spec:
+      containers:
+        - name: user-interface
+          image: user-interface-image:latest
+          ports:
+            - containerPort: 6001
+        - name: presentation-layer
+          image: presentation-layer-image:latest
+          ports:
+            - containerPort: 6002
+        - name: business-logic-layer
+          image: business-logic-layer-image:latest
+          ports:
+            - containerPort: 6003
+        - name: integration-layer
+          image: integration-layer-image:latest
+          ports:
+            - containerPort: 6004
+        - name: data-access-layer
+          image: data-access-layer-image:latest
+          ports:
+            - containerPort: 6005
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: smart-assistance-layers
+spec:
+  selector:
+    app: smart-assistance
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 6001

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: client-services
+spec:
+  containers:
+    - name: client-service
+      image: client-service:latest
+    - name: client-preferences-service
+      image: client-preferences-service:latest
+    - name: account-settings-service
+      image: account-settings-service:latest

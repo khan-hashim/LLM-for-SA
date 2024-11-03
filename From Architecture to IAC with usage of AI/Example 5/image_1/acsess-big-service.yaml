@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: response-generation-service
+spec:
+  selector:
+    app: response-generation
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8001
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: language-model-service
+spec:
+  selector:
+    app: language-model
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8002
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: natural-language-processing-service
+spec:
+  selector:
+    app: natural-language-processing
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8003
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: external-tool-api-service
+spec:
+  selector:
+    app: external-tool-api
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8004
+  type: LoadBalancer

@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-storage-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-storage-service
+  template:
+    metadata:
+      labels:
+        app: data-storage-service
+    spec:
+      containers:
+      - name: data-storage-service
+        image: data-storage-service:latest
+        volumeMounts:
+        - mountPath: "/var/lib/data_storage"
+          name: data-storage
+      volumes:
+      - name: data-storage
+        persistentVolumeClaim:
+          claimName: data-storage-pvc
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dashboard-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dashboard-service
+  template:
+    metadata:
+      labels:
+        app: dashboard-service
+    spec:
+      containers:
+      - name: dashboard-service
+        image: dashboard-service:latest
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservices-group
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: microservices-group
+  template:
+    metadata:
+      labels:
+        app: microservices-group
+    spec:
+      containers:
+      - name: monitoring-service
+        image: monitoring-service:latest
+      - name: notification-service
+        image: notification-service:latest
+      - name: integration-service
+        image: integration-service:latest
+      - name: authentication-service
+        image: authentication-service:latest
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: data-storage-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

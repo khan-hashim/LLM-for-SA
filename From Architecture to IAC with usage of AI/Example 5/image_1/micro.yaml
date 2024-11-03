@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: performance-services
+  labels:
+    app: performance
+spec:
+  containers:
+    - name: scalability-service
+      image: myimage/scalability-service:latest
+      ports:
+        - containerPort: 8101
+    - name: concurrency-service
+      image: myimage/concurrency-service:latest
+      ports:
+        - containerPort: 8102
+    - name: latency-service
+      image: myimage/latency-service:latest
+      ports:
+        - containerPort: 8103

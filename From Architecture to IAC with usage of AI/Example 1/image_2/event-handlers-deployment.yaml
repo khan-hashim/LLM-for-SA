@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-broker-handlers
+  namespace: financial-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: event-broker-handlers
+  template:
+    metadata:
+      labels:
+        app: event-broker-handlers
+    spec:
+      containers:
+      - name: event-broker
+        image: your-registry/event-broker:latest
+        ports:
+        - containerPort: 8085
+      - name: event-handlers
+        image: your-registry/event-handlers:latest
+        ports:
+        - containerPort: 8086

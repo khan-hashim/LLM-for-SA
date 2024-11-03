@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: investment-services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: investment-services
+  template:
+    metadata:
+      labels:
+        app: investment-services
+    spec:
+      containers:
+        - name: investment-service
+          image: investment-service:latest
+        - name: investment-data-service
+          image: investment-data-service:latest
+        - name: transaction-service
+          image: transaction-service:latest

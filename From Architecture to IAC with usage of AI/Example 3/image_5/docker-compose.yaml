@@ -1,0 +1,48 @@
+version: '3.8'
+services:
+  # Microservices
+  integration-microservice:
+    image: your-integration-microservice-image
+    container_name: integration_microservice
+    networks:
+      - monitoring-network
+
+  environmental-sensors-microservice:
+    image: your-environmental-sensors-microservice-image
+    container_name: environmental_sensors_microservice
+    networks:
+      - monitoring-network
+
+  real-time-monitoring-microservice:
+    image: your-real-time-monitoring-microservice-image
+    container_name: real_time_monitoring_microservice
+    networks:
+      - monitoring-network
+
+  alerting-microservice:
+    image: your-alerting-microservice-image
+    container_name: alerting_microservice
+    networks:
+      - monitoring-network
+
+  data-storage-microservice:
+    image: your-data-storage-microservice-image
+    container_name: data_storage_microservice
+    networks:
+      - monitoring-network
+
+  remote-access-microservice:
+    image: your-remote-access-microservice-image
+    container_name: remote_access_microservice
+    networks:
+      - monitoring-network
+
+  scalability-microservice:
+    image: your-scalability-microservice-image
+    container_name: scalability_microservice
+    networks:
+      - monitoring-network
+
+networks:
+  monitoring-network:
+    driver: bridge

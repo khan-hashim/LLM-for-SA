@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: user-interface-services
+  labels:
+    app: user-interface
+spec:
+  containers:
+    - name: user-interface-service
+      image: myimage/user-interface-service:latest
+      ports:
+        - containerPort: 8201
+    - name: security-and-privacy-service
+      image: myimage/security-and-privacy-service:latest
+      ports:
+        - containerPort: 8202
+    - name: user-query-service
+      image: myimage/user-query-service:latest
+      ports:
+        - containerPort: 8203

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: application-services
+  namespace: financial-system
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: application-services
+  template:
+    metadata:
+      labels:
+        app: application-services
+    spec:
+      containers:
+      - name: portfolio-service
+        image: your-registry/portfolio-service:latest
+        ports:
+        - containerPort: 8086
+      - name: transaction-service
+        image: your-registry/transaction-service:latest
+        ports:
+        - containerPort: 8087
+      - name: reporting-analytics
+        image: your-registry/reporting-analytics:latest
+        ports:
+        - containerPort: 8088

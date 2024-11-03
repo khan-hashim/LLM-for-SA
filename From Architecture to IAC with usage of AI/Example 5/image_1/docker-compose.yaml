@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  response-generation:
+    image: myimage/response-generation:latest
+    container_name: response_generation_service
+    restart: always
+    ports:
+      - "8001:8001"
+    networks:
+      - backend
+
+  language-model:
+    image: myimage/language-model:latest
+    container_name: language_model_service
+    restart: always
+    ports:
+      - "8002:8002"
+    networks:
+      - backend
+
+  natural-language-processing:
+    image: myimage/nlp-service:latest
+    container_name: natural_language_processing_service
+    restart: always
+    ports:
+      - "8003:8003"
+    networks:
+      - backend
+
+  external-tool-api:
+    image: myimage/external-tool-api:latest
+    container_name: external_tool_api_service
+    restart: always
+    ports:
+      - "8004:8004"
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge

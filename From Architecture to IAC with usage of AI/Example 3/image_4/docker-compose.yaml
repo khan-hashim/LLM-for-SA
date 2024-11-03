@@ -1,0 +1,56 @@
+version: '3.8'
+services:
+  # Presentation Layer
+  user-interface:
+    image: your-user-interface-image
+    container_name: user_interface
+    networks:
+      - monitoring-network
+
+  # Application Layer Services
+  environmental-sensors-service:
+    image: your-environmental-sensors-service-image
+    container_name: environmental_sensors_service
+    networks:
+      - monitoring-network
+
+  real-time-monitoring-service:
+    image: your-real-time-monitoring-service-image
+    container_name: real_time_monitoring_service
+    networks:
+      - monitoring-network
+
+  alerting-service:
+    image: your-alerting-service-image
+    container_name: alerting_service
+    networks:
+      - monitoring-network
+
+  integration-service:
+    image: your-integration-service-image
+    container_name: integration_service
+    networks:
+      - monitoring-network
+
+  remote-access-service:
+    image: your-remote-access-service-image
+    container_name: remote_access_service
+    networks:
+      - monitoring-network
+
+  # Infrastructure Layer
+  data-storage:
+    image: your-data-storage-image
+    container_name: data_storage
+    networks:
+      - monitoring-network
+
+  scalability-manager:
+    image: your-scalability-manager-image
+    container_name: scalability_manager
+    networks:
+      - monitoring-network
+
+networks:
+  monitoring-network:
+    driver: bridge
