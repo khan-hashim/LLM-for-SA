@@ -1,0 +1,188 @@
+#Note this works, however misssing components
+
+version: '3.9'
+
+services:
+  # Database service
+  database:
+    image: postgres:latest
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: "1024M"
+    networks:
+      - financial_network
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    restart: always
+    container_name: database
+    # Descriptive comment: The central database for storing financial data, including client accounts and transactions.
+
+  # Security Controls service
+  securitycontrols:
+    image: security-controls:latest
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "512M"
+    networks:
+      - financial_network
+    ports:
+      - "8001:8001"
+    restart: always
+    container_name: securitycontrols
+    # Descriptive comment: Manages system security and implements compliance rules.
+
+  # System Redundancy service
+  systemredundancy:
+    image: system-redundancy:latest
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "512M"
+    networks:
+      - financial_network
+    ports:
+      - "8002:8002"
+    restart: always
+    container_name: systemredundancy
+    # Descriptive comment: Ensures system reliability and redundancy for high availability.
+
+  # Data Privacy service
+  dataprivacy:
+    image: data-privacy:latest
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "512M"
+    networks:
+      - financial_network
+    ports:
+      - "8003:8003"
+    restart: always
+    container_name: dataprivacy
+    # Descriptive comment: Handles sensitive data privacy requirements and ensures compliance.
+
+  # Data Integrity service
+  dataintegrity:
+    image: data-integrity:latest
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "512M"
+    networks:
+      - financial_network
+    ports:
+      - "8004:8004"
+    restart: always
+    container_name: dataintegrity
+    # Descriptive comment: Ensures data consistency and integrity across the system.
+
+  # Portfolio Service
+  portfolioservice:
+    image: portfolio-service:latest
+    deploy:
+      resources:
+        limits:
+          cpus: "0.7"
+          memory: "768M"
+    networks:
+      - financial_network
+    ports:
+      - "8005:8005"
+    restart: always
+    container_name: portfolioservice
+    # Descriptive comment: Provides functionality for managing client portfolios and investments.
+
+  # Transaction Service
+  transactionservice:
+    image: transaction-service:latest
+    deploy:
+      resources:
+        limits:
+          cpus: "0.7"
+          memory: "768M"
+    networks:
+      - financial_network
+    ports:
+      - "8006:8006"
+    restart: always
+    container_name: transactionservice
+    # Descriptive comment: Handles financial transactions and ensures secure processing.
+
+  # Reporting Analytics Service
+  reportinganalyticsservice:
+    image: reporting-analytics-service:latest
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "512M"
+    networks:
+      - financial_network
+    ports:
+      - "8007:8007"
+    restart: always
+    container_name: reportinganalyticsservice
+    # Descriptive comment: Provides reporting and analytics for financial insights and performance metrics.
+
+  # Authentication Service
+  authenticationservice:
+    image: authentication-service:latest
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "512M"
+    networks:
+      - financial_network
+    ports:
+      - "8008:8008"
+    restart: always
+    container_name: authenticationservice
+    # Descriptive comment: Manages user authentication and authorization.
+
+  # Client Application service
+  clientapplication:
+    image: client-application:latest
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: "1024M"
+    networks:
+      - financial_network
+    ports:
+      - "8009:8009"
+    restart: always
+    container_name: clientapplication
+    # Descriptive comment: The front-facing application used by clients to access the financial system.
+
+  # User Interface service
+  userinterface:
+    image: user-interface:latest
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "512M"
+    networks:
+      - financial_network
+    ports:
+      - "8010:8010"
+    restart: always
+    container_name: userinterface
+    # Descriptive comment: Provides the user interface for the financial system.
+
+networks:
+  financial_network:
+    driver: bridge
+    # Descriptive comment: Shared network for inter-container communication within the financial system.
