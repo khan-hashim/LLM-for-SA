@@ -1,61 +1,245 @@
-version: '3.8'
+# version: '3.8'
+# services:
+#   event-producer:
+#     image: event-producer-image
+#     container_name: event_producer
+#     ports:
+#       - "8081:8080"
+#     networks:
+#       - monitoring-network
+
+#   event-bus:
+#     image: event-bus-image
+#     container_name: event_bus
+#     ports:
+#       - "8082:8080" 
+#     networks:
+#       - monitoring-network
+
+#   environmental-sensors:
+#     image: sensors-image
+#     container_name: environmental_sensors
+#     ports:
+#       - "8083:8080" 
+#     networks:
+#       - monitoring-network
+
+#   integration-with-building-systems:
+#     image: integration-image
+#     container_name: integration_building_systems
+#     ports:
+#       - "8084:8080" 
+#     networks:
+#       - monitoring-network
+
+#   alerting-and-notification:
+#     image: alerting-image
+#     container_name: alerting_notification
+#     ports:
+#       - "8085:8080"
+#     networks:
+#       - monitoring-network
+
+#   remote-access-control:
+#     image: remote-access-image
+#     container_name: remote_access_control
+#     ports:
+#       - "8086:8080" 
+#     networks:
+#       - monitoring-network
+
+#   scalability-management:
+#     image: scalability-image
+#     container_name: scalability_management
+#     ports:
+#       - "8087:8080" 
+#     networks:
+#       - monitoring-network
+
+#   real-time-monitoring:
+#     image: monitoring-image
+#     container_name: real_time_monitoring
+#     ports:
+#       - "8088:8080"
+#     networks:
+#       - monitoring-network
+
+#   data-logging-storage:
+#     image: data-storage-image
+#     container_name: data_logging_storage
+#     ports:
+#       - "8089:8080" 
+#     networks:
+#       - monitoring-network
+
+# networks:
+#   monitoring-network:
+#     driver: bridge
+
+version: '3.9'
+
 services:
-  # Big Services
-  event-producer:
-    image: your-event-producer-image
-    container_name: event_producer
+  # Environmental Sensors
+  environmental_sensors:
+    image: sensors-image
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "256M"
     networks:
-      - monitoring-network
+      - monitoring_network
+    ports:
+      - "8001:8001"
+    container_name: environmental_sensors_container
+    # Collects environmental data. Runs in a lightweight container with allocated resources.
 
-  event-bus:
-    image: your-event-bus-image
-    container_name: event_bus
+  # Integration with Building Systems
+  integration_with_building_systems:
+    image: integration-image
+    deploy:
+      resources:
+        limits:
+          cpus: "0.8"
+          memory: "512M"
     networks:
-      - monitoring-network
+      - monitoring_network
+    ports:
+      - "8002:8002"
+    container_name: integration_with_building_systems_container
+    # Connects data from sensors to building management systems.
 
-  # Microservices Grouped in Shared Containers
-  environmental-sensors:
-    image: your-sensors-image
-    container_name: environmental_sensors
+  # Alerting and Notification
+  alerting_and_notification:
+    image: alerting-image
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "256M"
     networks:
-      - monitoring-network
+      - monitoring_network
+    ports:
+      - "8003:8003"
+    container_name: alerting_and_notification_container
+    # Sends alerts and notifications based on system events.
 
-  integration-with-building-systems:
-    image: your-integration-image
-    container_name: integration_building_systems
+  # Remote Access and Control
+  remote_access_and_control:
+    image: remote-access-image
+    deploy:
+      resources:
+        limits:
+          cpus: "0.7"
+          memory: "512M"
     networks:
-      - monitoring-network
+      - monitoring_network
+    ports:
+      - "8004:8004"
+    container_name: remote_access_and_control_container
+    # Manages remote access for system administrators.
 
-  alerting-and-notification:
-    image: your-alerting-image
-    container_name: alerting_notification
+  # Scalability and Multi-Building Management
+  scalability_and_multi_building_management:
+    image: scalability-image
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: "1G"
     networks:
-      - monitoring-network
+      - monitoring_network
+    ports:
+      - "8005:8005"
+    container_name: scalability_and_multi_building_management_container
+    # Manages scaling and operations across multiple buildings.
 
-  remote-access-control:
-    image: your-remote-access-image
-    container_name: remote_access_control
+  # Real-Time Monitoring
+  real_time_monitoring:
+    image: monitoring-image
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: "1G"
     networks:
-      - monitoring-network
+      - monitoring_network
+    ports:
+      - "8006:8006"
+    container_name: real_time_monitoring_container
+    # Provides real-time updates on environmental conditions.
 
-  scalability-management:
-    image: your-scalability-image
-    container_name: scalability_management
+  # Data Logging and Storage
+  data_logging_and_storage:
+    image: data-storage-image
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: "4G"
     networks:
-      - monitoring-network
+      - monitoring_network
+    ports:
+      - "5432:5432"
+    container_name: data_logging_and_storage_container
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: monitoring_system
+    volumes:
+      - data_storage:/var/lib/postgresql/data
+    # Logs and stores sensor and event data using PostgreSQL with a persistent volume.
 
-  real-time-monitoring:
-    image: your-monitoring-image
-    container_name: real_time_monitoring
+  # Event Producer
+  event_producer:
+    image: event-producer-image
+    deploy:
+      resources:
+        limits:
+          cpus: "0.7"
+          memory: "512M"
     networks:
-      - monitoring-network
+      - monitoring_network
+    ports:
+      - "8007:8007"
+    container_name: event_producer_container
+    # Produces events for the system to process.
 
-  data-logging-storage:
-    image: your-data-storage-image
-    container_name: data_logging_storage
+  # Event Bus
+  event_bus:
+    image: event-bus-image
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: "1G"
     networks:
-      - monitoring-network
+      - monitoring_network
+    ports:
+      - "8008:8008"
+    container_name: event_bus_container
+    # Manages communication between producers and consumers.
+
+  # Event Consumer
+  event_consumer:
+    image: event-consumer-image
+    deploy:
+      resources:
+        limits:
+          cpus: "0.8"
+          memory: "512M"
+    networks:
+      - monitoring_network
+    ports:
+      - "8009:8009"
+    container_name: event_consumer_container
+    # Processes events passed through the event bus.
 
 networks:
-  monitoring-network:
+  monitoring_network:
     driver: bridge
+    # Shared network for communication between all services.
+
+volumes:
+  data_storage:
+    # Persistent storage for database.
