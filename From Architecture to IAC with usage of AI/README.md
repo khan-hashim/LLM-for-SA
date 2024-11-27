@@ -18,7 +18,7 @@ Please ensure the following:
 	Allocate memory and CPU limits for each service using deploy.resources.
 3.Service Connections:
 	Configure container-to-container communication appropriately.
-	Use service names as hostnames to enable networking and add ports.
+	Use service names as hostnames to enable networking and please add ports.
 4.Service Isolation:
 	Deploy each service in its own container, ensuring dedicated resources are used when necessary.
 5.Documentation:
