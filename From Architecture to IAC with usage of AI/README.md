@@ -8,14 +8,18 @@ Microservices: Group smaller, related microservices in shared containers where f
 
 Refined docker-compose prompt as follows:
 
-"Can you generate a Docker Compose YAML file for the attached design image? 
-Ensure the following:
-1. Service Definitions:
-	Define all services based on the design. Each service should run in its own container.
-2. Resource Allocation:
-	Allocate memory and CPU for services individually using deploy.resources.
-3. Networking:
-	Use a single shared network to allow communication between all services and add ports.
-4. Service Isolation:
-	Deploy services in their own containers with dedicated resources where necessary.
-5. Include comments for each section to explain your implementation choices."
+"Can you generate a Docker Compose YAML file for the attached design image?
+Please ensure the following:
+
+1.Service Definitions:
+	Define all services based on the design image.
+	Each service should run in its own container.
+2.Resource Allocation:
+	Allocate memory and CPU limits for each service using deploy.resources.
+3.Service Connections:
+	Configure container-to-container communication appropriately.
+	Use service names as hostnames to enable networking and add ports.
+4.Service Isolation:
+	Deploy each service in its own container, ensuring dedicated resources are used when necessary.
+5.Documentation:
+	Include clear and descriptive comments for each section to explain your implementation choices"
